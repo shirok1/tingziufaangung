@@ -11,5 +11,10 @@
 	"devDependencies": {
 		"typescript": "^5.5.2",
 		"wrangler": "^4.22.0"
+	},
+	"dependencies": {
+		"chinese-days": "^1.5.1",
+		"dayjs": "^1.11.13",
+		"grammy": "^1.36.3"
 	}
 }

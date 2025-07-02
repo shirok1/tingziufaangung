@@ -12,38 +12,45 @@
 	},
 	"triggers": {
 		"crons": [
-			"* * * * *"
+			"0 0 * * *",
+			// "* * * * *"
 		]
-	}
+	},
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
 	 */
 	// "placement": { "mode": "smart" },
-
 	/**
 	 * Bindings
 	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
 	 * databases, object storage, AI inference, real-time communication and more.
 	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
 	 */
-
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "db00ce2529bd4adca06452f954c5d5a7"
+		}
+	],
 	/**
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
-	// "vars": { "MY_VARIABLE": "production_value" },
+	"vars": {
+		"BOT_INFO": "{\"id\":7754035143,\"is_bot\":true,\"first_name\":\"聽朝返工\",\"username\":\"tzfgbot\",\"can_join_groups\":true,\"can_read_all_group_messages\":false,\"supports_inline_queries\":false,\"can_connect_to_business\":false,\"has_main_web_app\":false}",
+		"STICKER_ID": "CAACAgUAAxkBAAEO1bFoZPRtAbIeOuDFind1Y8qid3oK7AACBQEAAoQrGgMwAnckKXR-ezYE",
+		"CHAT_IDS": "5954108526,-1002302474024"
+	},
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
-
 	/**
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
 	// "assets": { "directory": "./public/", "binding": "ASSETS" },
-
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings

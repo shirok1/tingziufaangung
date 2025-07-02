@@ -15,26 +15,53 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { getDayDetail, findWorkday } from 'chinese-days';
+import { Bot, Context, webhookCallback } from "grammy";
+
+export interface Env {
+	BOT_INFO: string;
+	BOT_TOKEN: string;
+	CHAT_IDS: string;
+	STICKER_ID: string;
+	KV: KVNamespace;
+}
+
+async function workNotify(env: Env) {
+	const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
+	const chatIds = env.CHAT_IDS.split(',');
+	console.log(["chatIds", chatIds]);
+	const today = new Date();
+	const { work, name } = getDayDetail(today);
+	if (work) {
+		console.log('work');
+		for (const chatId of chatIds) {
+			console.log("sending work message to chatId", chatId);
+			await bot.api.sendSticker(chatId, env.STICKER_ID);
+			await bot.api.sendMessage(chatId, `聽朝要返工，早啲瞓啦……`);
+		}
+	} else {
+		const [_, holiday] = name.split(',');
+		console.log(holiday);
+		const workday = findWorkday(0, today);
+		console.log(workday);
+		for (const chatId of chatIds) {
+			console.log("sending holiday message to chatId", chatId);
+			await bot.api.sendMessage(chatId, `聽日唔使返工，${holiday}`);
+		}
+	}
+}
+
 export default {
 	async fetch(req) {
 		const url = new URL(req.url);
 		url.pathname = '/__scheduled';
-		url.searchParams.append('cron', '* * * * *');
+		url.searchParams.append('cron', '0 0 * * *');
 		return new Response(`To test the scheduled handler, ensure you have used the "--test-scheduled" then try running "curl ${url.href}".`);
 	},
 
 	// The scheduled handler is invoked at the interval set in our wrangler.jsonc's
 	// [[triggers]] configuration.
-	async scheduled(event, env, ctx): Promise<void> {
-		// A Cron Trigger can make requests to other endpoints on the Internet,
-		// publish to a Queue, query a D1 Database, and much more.
-		//
-		// We'll keep it simple and make an API call to a Cloudflare API:
-		let resp = await fetch('https://api.cloudflare.com/client/v4/ips');
-		let wasSuccessful = resp.ok ? 'success' : 'fail';
-
-		// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-		// In this template, we'll just log the result:
-		console.log(`trigger fired at ${event.cron}: ${wasSuccessful}`);
+	async scheduled(event, env: Env, ctx): Promise<void> {
+		await workNotify(env);
 	},
 } satisfies ExportedHandler<Env>;
