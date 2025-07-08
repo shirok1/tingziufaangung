@@ -10,11 +10,13 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.5.2",
-		"wrangler": "^4.22.0"
+		"wrangler": "^4.22.0",
+		"@types/luxon": "^3.6.2"
 	},
 	"dependencies": {
 		"chinese-days": "^1.5.1",
 		"dayjs": "^1.11.13",
-		"grammy": "^1.36.3"
+		"grammy": "^1.36.3",
+		"luxon": "^3.6.1"
 	}
 }

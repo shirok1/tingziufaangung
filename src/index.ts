@@ -15,6 +15,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { DateTime } from "luxon";
 import { getDayDetail, findWorkday } from 'chinese-days';
 import { Bot, Context, webhookCallback } from "grammy";
 
@@ -30,7 +31,8 @@ async function workNotify(env: Env) {
 	const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
 	const chatIds = env.CHAT_IDS.split(',');
 	console.log(["chatIds", chatIds]);
-	const today = new Date();
+	const today = DateTime.now().setZone("Asia/Hong_Kong").toJSDate();
+	console.log("today", today);
 	const { work, name } = getDayDetail(today);
 	if (work) {
 		console.log('work');
@@ -41,12 +43,13 @@ async function workNotify(env: Env) {
 		}
 	} else {
 		const [_, holiday] = name.split(',');
-		console.log(holiday);
+		console.log("holiday", holiday);
 		const workday = findWorkday(0, today);
-		console.log(workday);
+		console.log("workday", workday);
+		const text = `聽日唔使返工` + (holiday ? `（${holiday}）` : "") + `，下次返工係${workday}`;
 		for (const chatId of chatIds) {
 			console.log("sending holiday message to chatId", chatId);
-			await bot.api.sendMessage(chatId, `聽日唔使返工，${holiday}`);
+			await bot.api.sendMessage(chatId, text);
 		}
 	}
 }
