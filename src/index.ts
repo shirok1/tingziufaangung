@@ -31,7 +31,7 @@ async function workNotify(env: Env) {
 	const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
 	const chatIds = env.CHAT_IDS.split(',');
 	console.log(["chatIds", chatIds]);
-	const today = DateTime.now().setZone("Asia/Hong_Kong").toJSDate();
+	const today = DateTime.now().setZone("Asia/Hong_Kong").toFormat("yyyy-MM-dd");
 	console.log("today", today);
 	const { work, name } = getDayDetail(today);
 	if (work) {
