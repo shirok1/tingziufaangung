@@ -9,9 +9,9 @@
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
-		"typescript": "^5.9.3",
-		"wrangler": "^4.54.0",
-		"@types/luxon": "^3.7.1"
+		"typescript": "5.9.3",
+		"wrangler": "4.59.2",
+		"@types/luxon": "3.7.1"
 	},
 	"dependencies": {
 		"chinese-days": "^1.5.4",
