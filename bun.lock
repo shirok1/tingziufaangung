@@ -5,7 +5,7 @@
     "": {
       "name": "tingziufaangung",
       "dependencies": {
-        "chinese-days": "^1.5.4",
+        "chinese-days": "^1.5.7",
         "dayjs": "^1.11.19",
         "grammy": "^1.39.2",
         "luxon": "^3.7.2",
@@ -162,7 +162,7 @@
 
     "blake3-wasm": ["blake3-wasm@2.1.5", "", {}, "sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g=="],
 
-    "chinese-days": ["chinese-days@1.5.4", "", {}, "sha512-YAj/f4UhzNm7F5SbeyhVPZbS5gdGNcsaNy4TqIzknx5/fql0bHU+OY3wJEw75lMhfsZRQUCTvBNu88rcMoswmw=="],
+    "chinese-days": ["chinese-days@1.5.7", "", {}, "sha512-8Z/afgDTct5jsoTLQTOZfpDl7w4pJH4jpr3DLxy6HING9U/e0EV7yiNxF/HVXp/c+eQFfFqv+HQZ/QDaIVJ1Vw=="],
 
     "cookie": ["cookie@1.1.1", "", {}, "sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ=="],
 
