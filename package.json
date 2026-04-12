@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"typescript": "5.9.3",
-		"wrangler": "4.78.0",
+		"wrangler": "4.81.1",
 		"@types/luxon": "3.7.1"
 	},
 	"dependencies": {
