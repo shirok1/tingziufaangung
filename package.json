@@ -11,7 +11,7 @@
 	"devDependencies": {
 		"typescript": "5.9.3",
 		"wrangler": "4.93.1",
-		"@types/luxon": "3.7.1"
+		"@types/luxon": "3.7.5"
 	},
 	"dependencies": {
 		"chinese-days": "^1.5.9",
